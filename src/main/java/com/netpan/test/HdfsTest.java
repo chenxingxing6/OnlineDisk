@@ -1,24 +1,25 @@
-package com.netpan.dao.basedao;
+package com.netpan.test;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
+import com.netpan.dao.conn.HdfsConn;
+import com.netpan.entity.File;
+import com.netpan.entity.User;
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.util.Progressable;
 import org.springframework.stereotype.Repository;
 
-import com.netpan.dao.conn.HdfsConn;
-import com.netpan.entity.File;
-import com.netpan.entity.User;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
 
-@Repository("hdfsDao")
-public class HdfsDao {
-	private final String basePath = "/OnlineDisk/";
+public class HdfsTest {
+	private final String basePath = "/cxx/";
 	
 	/**
 	 * 获得在hdfs中的目录
@@ -143,6 +144,27 @@ public class HdfsDao {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+/*	public static void main(String[] args) {
+		HdfsTest hdfsTest = new HdfsTest();
+		User user = new User();
+		user.setName("cxx");
+		hdfsTest.mkDir(new File(), user);
+	}*/
+
+	public static void main(String[] args) throws Exception {
+		String uri="hdfs://192.168.153.134:9000/test/test.txt";
+		System.setProperty("hadoop.home.dir", "E:\\hadoop-2.8.3");
+		Configuration configuration=new Configuration();
+		FileSystem fileSystem= FileSystem.get(URI.create(uri), configuration);
+		FSDataInputStream in=null;
+		in=fileSystem.open(new Path(uri));
+//		FileStatus fileStatus=fileSystem.getFileStatus(new Path(uri));
+//		byte[] buffer=new byte[1024];
+//		in.read(4096, buffer, 0, 1024);
+		IOUtils.copyBytes(in, System.out, 4096, false);
+		IOUtils.closeStream(in);
 	}
 	
 	

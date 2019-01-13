@@ -15,8 +15,9 @@ public class HdfsConn {
 
 	private HdfsConn() {
 		try {
+			System.setProperty("hadoop.home.dir", "E:\\hadoop-2.8.3");
 			configuration = new Configuration();
-			configuration.set("fs.defaultFS", "hdfs://oracle:9000/");
+			configuration.set("fs.defaultFS", "hdfs://192.168.153.134:9000/");
 			fileSystem = FileSystem.get(configuration);
 		} catch (IOException e) {
 			e.printStackTrace();
