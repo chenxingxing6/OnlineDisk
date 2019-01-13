@@ -1,4 +1,4 @@
-大数据企业实训项目：基于SpringMVC+Spring+HBase+Maven搭建的Hadoop分布式云盘系统。
+基于SpringMVC+Spring+HBase+Maven搭建的Hadoop分布式云盘系统。
 使用Hadoop HDFS作为文件存储系统、HBase作为数据存储仓库，采用SpringMVC+Spring框
 架实现，包括用户注册与登录、我的网盘、关注用户、我的分享、我收到的分享等五大功
 能模块。其中我的网盘包括查看文件列表，多文件上传，创建文件夹，文件重命名、复制

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="OnlineDisk:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="OnlineDisk.war">
+      <element id="artifact" artifact-name="OnlineDisk:war exploded" />
+    </root>
+  </artifact>
+</component>
